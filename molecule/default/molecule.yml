@@ -1,0 +1,21 @@
+---
+# the central configuration entry point for Molecule per scenario.
+# With this file, you can configure each tool that Molecule will employ when testing your role.
+
+# molecule dependency
+dependency:
+  name: galaxy
+driver:
+  name: docker  # molecule-plugins[docker]
+platforms:
+  - name: debian-bullseye
+    image: debian:bullseye-slim
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint

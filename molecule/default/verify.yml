@@ -1,0 +1,9 @@
+---
+# a playbook for testing things
+
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Assert something
+    assert:
+      that: True
