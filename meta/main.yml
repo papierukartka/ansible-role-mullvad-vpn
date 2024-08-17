@@ -9,3 +9,7 @@ galaxy_info:
     - web
     - ubuntu
     - debian
+  platforms:
+    - name: Debian
+      versions:
+        - trixie
