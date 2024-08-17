@@ -1,0 +1,11 @@
+galaxy_info:
+  author: Krzysztof Sliwinski
+  description: Ansible role to install Mullvad VPN
+  license: license (GPL-3.0)
+  role_name: mullvad_vpn
+  namespace: sliwkr
+  min_ansible_version: 2.17.1
+  galaxy_tags:
+    - web
+    - ubuntu
+    - debian
