@@ -1,0 +1,6 @@
+---
+
+mullvad_keyring_os_location: /usr/share/keyrings/mullvad-keyring.asc
+mullvad_keyring_url: https://repository.mullvad.net/deb/mullvad-keyring.asc
+mullvad_keyring_sha256: 67cee5d3e6d566c121c2c812d594ba673aaf73e6a679ab6d254f03e8210c49d1
+mullvad_repository_url: https://repository.mullvad.net/deb/stable

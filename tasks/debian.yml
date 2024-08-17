@@ -1,0 +1,28 @@
+---
+
+- name: Repository signing key absent from keyring
+  ansible.builtin.file:
+    path: "{{ mullvad_keyring_os_location }}"
+    state: absent
+  when: mullvad_state != "present"
+
+- name: Repository signing key present in keyring
+  ansible.builtin.get_url:
+    url: "{{ mullvad_keyring_url }}"
+    dest: "{{ mullvad_keyring_os_location }}"
+    checksum: "sha256:{{ mullvad_keyring_sha256 }}"
+    mode: "644"  # rw-r--r--
+  when: mullvad_state == "present"
+
+- name: Repository url presence in apt sources
+  ansible.builtin.apt_repository:
+    # todo s/testing/{{ ansible_facts.distribution_release }} https://github.com/mullvad/mullvadvpn-app/issues/6018
+    repo: "deb [signed-by={{ mullvad_keyring_os_location }} arch={{ mullvad_cpu_arch }}] {{ mullvad_repository_url }} testing main"
+    state: "{{ mullvad_state }}"
+    update_cache: true
+    filename: mullvad
+
+- name: Package presence
+  ansible.builtin.package:
+    name: "mullvad-vpn={{ mullvad_version }}"
+    state: "{{ mullvad_state }}"

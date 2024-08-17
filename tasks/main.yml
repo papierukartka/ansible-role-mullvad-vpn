@@ -1,0 +1,15 @@
+---
+# Configures repository and installs mullvad vpn client
+# https://mullvad.net/en/download/vpn/linux
+
+- name: Debian
+  when: ansible_os_family == 'Debian'
+  block:
+    - name: Include Debian variables
+      ansible.builtin.include_vars: debian.yml
+    - name: Start Debian tasks
+      ansible.builtin.include_tasks: debian.yml
+
+- name: RedHat
+  when: ansible_os_family == 'RedHat'
+  ansible.builtin.include_tasks: redhat.yml

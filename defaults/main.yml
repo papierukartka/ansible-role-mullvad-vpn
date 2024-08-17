@@ -1,0 +1,5 @@
+---
+
+mullvad_state: present
+mullvad_cpu_arch: amd64
+mullvad_version: 2024.4
