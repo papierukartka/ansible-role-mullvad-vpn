@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Krzysztof Sliwinski
   description: Ansible role to install Mullvad VPN
