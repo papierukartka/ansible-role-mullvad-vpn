@@ -6,12 +6,6 @@
   gather_facts: true
 
   tasks:
-    - name: Debug
-      debug:
-        var: ansible_facts
     - name: "Include mullvad_vpn"
-      include_role:
+      ansible.builtin.include_role:
         name: "mullvad_vpn"
-
-#  roles:
-#    - sliwkr.mullvad_vpn

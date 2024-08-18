@@ -1,5 +1,6 @@
 ---
 # a playbook for testing things
+# todo check if mullvad-daemon running if mullvad_state==present
 
 - name: Verify
   hosts: all
