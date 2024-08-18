@@ -28,4 +28,4 @@
 
     - name: Mullad vpn daemon is running
       ansible.builtin.assert:
-        that: service_mullvad.status=='running'
+        that: service_mullvad.status.ActiveState=="active"
