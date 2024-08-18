@@ -1,0 +1,19 @@
+---
+# https://yamllint.readthedocs.io/en/stable/configuration.html#default-configuration
+extends: default
+
+ignore: |
+  /this/specific/file.yaml
+  venv/
+  ansible-role-nginx/
+  *.template.yaml
+
+rules:
+  truthy:
+    allowed-values:
+      - 'true'
+      - 'false'
+      - 'yes'
+      - 'no'
+  line-length:
+    max: 140
