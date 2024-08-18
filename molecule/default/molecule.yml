@@ -18,11 +18,11 @@ platforms:
     pre_build_image: false
     # a hack to have systemd in docker
     # do not run on a systemd-managed host
-    # privileged: true
-    # cgroupns_mode: host
-    # volumes:
-    #   - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    # command: /sbin/init  # on rhel-based this happens to be /usr/sbin/init
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init  # on rhel-based this happens to be /usr/sbin/init
 provisioner:
   name: ansible
 verifier:
