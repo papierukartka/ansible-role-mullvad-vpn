@@ -1,0 +1,11 @@
+---
+# the playbook file that contains the call for your role.
+# Molecule will invoke this playbook with ansible-playbook and run it against an instance created by the driver.
+- name: Converge
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: "Include mullvad_vpn"
+      ansible.builtin.include_role:
+        name: ansible-role-mullvad-vpn

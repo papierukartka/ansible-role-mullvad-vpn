@@ -1,5 +1,11 @@
 ---
 
+- name: Ensure dependencies presence
+  ansible.builtin.package:
+    # ca-certificates - due to adding a signing key
+    name: ["ca-certificates"]
+    state: present
+
 - name: Repository signing key absent from keyring
   ansible.builtin.file:
     path: "{{ mullvad_keyring_os_location }}"

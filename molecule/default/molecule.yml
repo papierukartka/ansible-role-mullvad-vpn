@@ -1,0 +1,33 @@
+---
+# the central configuration entry point for Molecule per scenario.
+# With this file, you can configure each tool that Molecule will employ when testing your role.
+#
+# todo: technically an ansible playbook so all concepts from here should apply
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks.html
+# but a loop over platforms gives a 500 invalid reference format
+
+# molecule dependency
+dependency:
+  name: galaxy
+driver:
+  name: docker  # molecule-plugins[docker]
+platforms:
+  - name: debian-bullseye
+    image: debian:bullseye-slim
+    dockerfile: Dockerfile.j2
+    pre_build_image: false
+    # a hack to have systemd in docker
+    # do not run on a systemd-managed host
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init  # on rhel-based this happens to be /usr/sbin/init
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
