@@ -17,7 +17,7 @@ Allows to install [Mullvad VPN](https://mullvad.net/en/vpn)
 
 ## Dependencies
 
-* None
+* `python3`
 
 ## Example Playbook
 
@@ -25,6 +25,7 @@ Allows to install [Mullvad VPN](https://mullvad.net/en/vpn)
 # install
 - hosts: all
   become: true
+  gather_facts: true
   roles:
     - sliwkr.mullvad_vpn
 ```
@@ -33,6 +34,7 @@ Allows to install [Mullvad VPN](https://mullvad.net/en/vpn)
 # uninstall
 - hosts: all
   become: true
+  gather_facts: true
   roles:
     - sliwkr.mullvad_vpn
       mullvad_state: absent
