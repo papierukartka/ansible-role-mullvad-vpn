@@ -9,6 +9,8 @@ galaxy_info:
     - web
     - ubuntu
     - debian
+  # platforms section is no longer supported via galaxy ng,
+  # still `ansible-galaxy search` supports it
   platforms:
     - name: Debian
       versions:
