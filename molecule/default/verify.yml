@@ -5,6 +5,27 @@
 - name: Verify
   hosts: all
   tasks:
-  - name: Assert something
-    assert:
-      that: True
+    - name: Get Service Status
+      ansible.builtin.service:
+        name: "mullvad-daemon.service"
+      register: service_mullvad
+      changed_when: false
+
+    - name: Get executable version
+      ansible.builtin.command:
+        cmd: "mullvad version"
+      register: cli_mullvad_version
+      changed_when: false
+
+
+    - name: Print service status
+      ansible.builtin.debug:
+        var: service_mullvad.status
+
+    - name: Print output of 'mullvad version'
+      ansible.builtin.debug:
+        var: cli_mullvad_version
+
+    - name: Mullad vpn daemon is running
+      ansible.builtin.assert:
+        that: service_mullvad.status=='running'
