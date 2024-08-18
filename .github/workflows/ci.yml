@@ -21,12 +21,14 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker yamllint ansible-lint
+        run: pip3 install ansible molecule molecule-plugins[docker] docker yamllint
 
-      - name: Lint the codebase.
-        run: |
-          yamllint . \
-          ansible-lint
+      - name: Run yamllint.
+        run: yamllint .
+
+      - name: Run ansible-lint.
+        uses: ansible/ansible-lint@main # or version tag instead of 'main'
+
 
       - name: Run Molecule tests.
         run: molecule test
