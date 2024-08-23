@@ -9,6 +9,7 @@ Allows to install [Mullvad VPN](https://mullvad.net/en/download/vpn/linux)
 ## Requirements
 
 * `min_ansible_version>=2.17`. See [meta/main.yml](./meta/main.yml) for details
+* `ca-certificates` for adding a repository signing key. Installed as part of the role.
 
 ## Role Variables
 
@@ -23,7 +24,7 @@ Allows to install [Mullvad VPN](https://mullvad.net/en/download/vpn/linux)
 ## Example Playbook
 
 ```yml
-# install
+# playbook.yml, install
 - hosts: all
   become: true
   gather_facts: true
@@ -32,13 +33,25 @@ Allows to install [Mullvad VPN](https://mullvad.net/en/download/vpn/linux)
 ```
 
 ```yml
-# uninstall
+# playbook.yml, install, another way
+- hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    mullvad_state: present
+  roles:
+    - sliwkr.mullvad_vpn
+```
+
+```yml
+# playbook.yml, uninstall
 - hosts: all
   become: true
   gather_facts: true
   roles:
-    - sliwkr.mullvad_vpn
-      mullvad_state: absent
+    - role: sliwkr.mullvad_vpn
+      vars:
+        mullvad_state: absent
 ```
 
 ## License
